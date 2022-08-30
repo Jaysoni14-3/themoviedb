@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --clr-red: #dc3545;
+    --clr-white: #ffffff;
+    --clr-black: #000000;
+    --clr-gray: #D3D3D3;
+    --font-popins: 'Poppins', sans-serif;
+    --font-montserrat: 'Montserrat', sans-serif;
+}
+
+*, 
+*::after,
+*::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.max-content-btn{
+    width: max-content !important;
+}
+
+label{
+    user-select: none !important;
+}
+
+img{
+    width: 100%;
+}
+
+.hero-section-top{
+    background: url(../images/background-ed.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+}
+
+.movie-card-wrapper{
+    width: 90%;
+    min-height: 270px;
+    margin: 0 auto;
+    background-color: #181818;
+    transition: all 0.2s ease-in;
+}
+
+.movie-card-wrapper:hover{
+    transform: scale(1.05);
+}
+
+.movie-image{
+    min-height: 60%;
+}
+
+.movie-image.no-image img{
+    min-height: 157px;
+    max-height: 160px;
+}
+
+.movie-desc{
+    min-height: 40%;
+}
+
+.movie-name{
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    display: inline-block; 
+    color: var(--clr-white); 
+    transition: all 0.3s ease-in-out;
+}
+.movie-name:hover{
+    color: var(--clr-red);
+}
+
+.movie-name:after {
+    display: block;
+    content: '';
+    border-bottom: 1px solid transparent;
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+    transform-origin: 50% 100%;
+}
+.movie-name:hover:after { 
+    border-color: var(--clr-red);
+    transform: scaleX(1);
+    transform-origin: 50% 50%;
+}
+
+.movie-rating{
+    font-size: 14px;
+}
+
+.movie-relase-date{
+    font-size: 14px;
+}
+
+#showMoreBtn,
+.showMoreMoviesBtn,
+.fetchNextPage{
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.search-movie-field{
+    width: 80% !important;
+}
+
+.searchBox{
+    min-width: 50% !important;
+    max-width: 250px !important;
+    border: 0;
+    background-color: var(--clr-gray) !important;
+}
+
+
+/* MOVIE DESCRIPTIONS */
+.movie-descriptions{
+    color: var(--clr-white);
+    font-family: var(--font-montserrat);
+}
+
+.details-page-name{
+    font-family: var(--font-montserrat);
+}
+
+.movie-descriptions-top p{
+    padding-inline: 15px;
+    border-right: 1px solid rgb(143, 143, 143);
+}
+
+.movie-descriptions-top p:first-child{
+    padding-left: 0;
+}
+
+.movie-descriptions-top p:last-child{
+    border-right: 0;
+}
+
+.detail-label{
+    user-select: none;
+    font-family: var(--font-popins);
+    font-weight: 300;
+    text-transform: capitalize;
+    color: rgb(143, 143, 143);
+}
+
+.overview{
+    line-height: 1.8;
+}
+
+
+/* SIMILAR MOVIES  */
+
+.similar-movie-card-wrapper {
+    background-color: #212121;
+    position: relative;
+}
+
+.similar-movie-desc{
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+    
+}
+
+.similar-movie-image{
+    transition: all 0.5 ease-in-out;
+}
+
+.similar-movie-image:hover{
+    transform: scale(1.05);
+    transition-duration: .3s;
+    filter: grayscale(100%);
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.similar-movie-card-wrapper:hover .similar-movie-desc{
+    display: block;
+    user-select: none;
+    pointer-events: none;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    letter-spacing: 0.8px;
+    filter: grayscale(0%);
+}
+
+
+/* CREW CAST  */
+.nav-tabs{
+    border-radius: 0.375rem;
+    border-bottom: none !important;
+}
+
+.nav-pills .nav-link.active{
+    background-color: var(--clr-red) !important;
+}
+
+.crew-cast-name{
+    padding-inline: 15px;
+    transition: color 0.3s ease;
+    /* border-right: 1px solid rgb(143, 143, 143); */
+}
+.crew-cast-name:last-child{
+    border-right: 0;
+}
+
+.crew-cast-name:hover{
+    color: var(--clr-red);
+}
+
+
+#castTabContent,
+#crewTabContent{
+    min-height: 300px !important;
+    max-height: 30px !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

@@ -1,0 +1,33 @@
+-> apiURL FOR MOVIE DETAILS 
+    https://api.themoviedb.org/3/movie/{movieID}?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US
+
+-> apiURL FOR CREW
+    https://api.themoviedb.org/3/movie/{movieID}/credits?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US
+
+-> apiURL FOR SIMILAR MOVIES
+    https://api.themoviedb.org/3/movie/361743/similar?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US&page=1
+
+-> apiURL FOR LATEST (gives only one movie)
+    https://api.themoviedb.org/3/movie/latest?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US
+
+-> apiURL FOR TRENDING MOVIES 
+    https://api.themoviedb.org/3/trending/movie/week?api_key=6ecb3c9eae671fa03e06b15bbda19db8
+
+-> apiURL FOR TOP RATED MOVIES 
+    https://api.themoviedb.org/3/movie/top_rated?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US&page=1
+
+-> apiURL FOR UPCOMING MOVIES 
+    https://api.themoviedb.org/3/movie/upcoming?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US&page=1
+
+-> apiURL FOR WATCH PROVIDERS
+    https://api.themoviedb.org/3/movie/361743/watch/providers?api_key=6ecb3c9eae671fa03e06b15bbda19db8
+        get logo url pass it in following url
+            https://image.tmdb.org/t/p/original/{logo_path}
+            https://image.tmdb.org/t/p/original/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg
+
+-> apiURL FOR VIDEOS
+    https://api.themoviedb.org/3/movie/361743/videos?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US
+        get results[i].key and pass it in youtube url after "v=" 
+            ex-https://www.youtube.com/watch?v=EM2SmqGFTpo
+
+ニューハーフ強●ドM化実験 被験者＃01 さくや
