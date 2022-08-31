@@ -220,11 +220,10 @@ img{
     color: var(--clr-red);
 }
 
-
 #castTabContent,
 #crewTabContent{
-    min-height: 300px !important;
-    max-height: 30px !important;
+    min-height: 150px !important;
+    max-height: 300px !important;
     overflow-y: scroll;
     overflow-x: hidden;
 }

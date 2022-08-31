@@ -4,14 +4,14 @@ $("#navSearchBtn").on("click", function(){
         alert("Please enter valid name")
     }else{
         // alert(navSearchValue);
-        window.location = 'movies.html?moviename=' + navSearchValue;
+        window.location = '../html/movies.html?moviename=' + navSearchValue;
     }
 });
 
 // ON CLICK OF MOVIE NAME
 $(document).on('click', '.viewDetailBtn', function() { 
     var movieId = $(this).parent().parent().attr("id");
-    window.location = 'details.html?id=' + movieId ;
+    window.location = '../html/details.html?id=' + movieId ;
 });
 
 function formatDate(releaseDate){

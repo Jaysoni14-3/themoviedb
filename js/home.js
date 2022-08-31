@@ -44,24 +44,24 @@ async function fetchPopularMovies() {
 }
 
 $("#exploreMovies").on("click", function(){
-    window.location = 'movies.html';
+    window.location = '../html/movies.html';
 });
 
 $("#exploreTvShows").on("click", function(){
-    window.location = 'tv-shows.html';
+    window.location = '../html/tv-shows.html';
 });
 
-$(document).on('click', '#viewDetailBtn', function() { 
-    var movieId = $(this).parent().parent().attr("id");
-    window.location = 'details.html?id=' + movieId ;
-});
+// $(document).on('click', '#viewDetailBtn', function() { 
+//     var movieId = $(this).parent().parent().attr("id");
+//     window.location = 'details.html?id=' + movieId ;
+// });
 
 $(document).on('click', '#showAllRecentMoviesBtn', function() { 
-    window.location = 'popular-movies.html';
+    window.location = '../html/popular-movies.html';
 });
 
 $(document).on('click', '#view-all-btn', function() { 
-    window.location = 'popular-movies.html';
+    window.location = '../html/popular-movies.html';
 });
 
 
