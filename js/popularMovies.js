@@ -48,6 +48,9 @@ async function fetchAllPopularMovies(pageNo) {
     }); 
 }
 
+setTimeout(()=> {
+    $("#showMoreBtn").removeClass("d-none");
+}, 1000);
 
 function formatDate(releaseDate){
     var dateToFormat = new Date(releaseDate);

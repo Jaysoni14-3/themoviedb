@@ -51,10 +51,10 @@ $("#exploreTvShows").on("click", function(){
     window.location = '../html/tv-shows.html';
 });
 
-// $(document).on('click', '#viewDetailBtn', function() { 
-//     var movieId = $(this).parent().parent().attr("id");
-//     window.location = 'details.html?id=' + movieId ;
-// });
+setTimeout(()=> {
+    $("#showAllRecentMoviesBtn").removeClass("d-none");
+}, 1000);
+
 
 $(document).on('click', '#showAllRecentMoviesBtn', function() { 
     window.location = '../html/popular-movies.html';

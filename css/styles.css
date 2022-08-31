@@ -126,7 +126,16 @@ img{
     font-family: var(--font-montserrat);
 }
 
-.details-page-name{
+.detail-genre{
+    transition: all 0.2s ease-out;
+}
+
+.detail-genre:hover{
+    color: var(--clr-red);
+    text-decoration: underline;
+}
+
+.details-page-movie-name{
     font-family: var(--font-montserrat);
 }
 
