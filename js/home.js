@@ -17,7 +17,7 @@ async function fetchPopularMovies() {
             var imgPath = data.results[i].backdrop_path;
 
             $(".latest-movies-lists").prepend(
-                `<div class="col-12 col-md-4 col-lg-3 movie-card py-2 mb-4">
+                `<div class="col-12 col-md-4 col-lg-3 movie-card py-2 mb-4" id="${data.results[i].title}">
                     <div class="movie-card-wrapper p-2" id="${data.results[i].id}">
                         <div class="movie-image">
                             <img class="movie-poster" src="https://image.tmdb.org/t/p/original${imgPath}" alt="${data.results[i].title}">

@@ -1,17 +1,12 @@
+
 $("#navSearchBtn").on("click", function(){
     var navSearchValue = $("#navSearchField").val();
     if(navSearchValue == ""){
         alert("Please enter valid name")
     }else{
-        // alert(navSearchValue);
-        window.location = '../html/movies.html?moviename=' + navSearchValue;
+        navSearchValue = navSearchValue.replaceAll(" ", "-");
+        window.location = '../html/movies.html?query=' + navSearchValue;
     }
-});
-
-// ON CLICK OF MOVIE NAME
-$(document).on('click', '.viewDetailBtn', function() { 
-    var movieId = $(this).parent().parent().attr("id");
-    window.location = '../html/details.html?id=' + movieId ;
 });
 
 function formatDate(releaseDate){
@@ -22,3 +17,28 @@ function formatDate(releaseDate){
     var formattedDate = mm + ' ' + dd + ', ' + yyyy;
     return formattedDate;
 }
+
+
+$("#navSearchField").on('keypress', function(e) {
+    if(e.which === 13) {
+        navSearchValue = $("#navSearchField").val();
+        if(navSearchValue == ""){
+            return;
+        }else{
+            window.location = '../html/movies.html?query=' + navSearchValue;
+        }
+    }
+});
+
+// ON CLICK OF MOVIE NAME
+var movieId;
+var movieName;
+$(document).on('click', '.movie-card-wrapper', function() { 
+    movieId = $(this).attr("id");
+    movieName = $(this).parent().attr("id").replaceAll(' ', '-');
+
+    localStorage.setItem("MovieId", movieId);
+
+    window.location = '../html/details.html?movie='+ movieName.toLowerCase();
+});
+

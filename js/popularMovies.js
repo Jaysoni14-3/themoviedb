@@ -22,7 +22,7 @@ async function fetchAllPopularMovies(pageNo) {
         for(var i = 0; i < data.results.length; i++){
 
             $(".latest-movies-lists").append(
-                `<div class="col-12 col-md-4 col-lg-3 movie-card py-2 mb-2">
+                `<div class="col-12 col-md-4 col-lg-3 movie-card py-2 mb-2" id="${data.results[i].title}">
                     <div class="movie-card-wrapper p-2" id="${data.results[i].id}">
                         <div class="movie-image">
                             <img class="movie-poster" src="https://image.tmdb.org/t/p/original${data.results[i].backdrop_path}" alt="${data.results[i].id}">

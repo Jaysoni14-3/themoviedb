@@ -1,26 +1,29 @@
 const baseUrl = "https://api.themoviedb.org/3/movie/";
 const API_KEY = "6ecb3c9eae671fa03e06b15bbda19db8";
 
-const movieID = window.location.search.substring(1).substring(3);
+const movieID = localStorage.getItem("MovieId");
+
+// const movieID = window.location.search.substring(1).substring(3);
 var movieName;
-// console.log(movieID);
 
 $("document").ready(function(){
     getMovieDetails();
     getSimilarMovies();
     getCastDetails();
+    getTrailer();
 });
 
 async function getMovieDetails() {
     
     let response = await fetch(baseUrl + movieID + '?api_key=' + API_KEY + '&language=en-US');
+    // console.log(baseUrl + movieID + '?api_key=' + API_KEY + '&language=en-US')
 
     if (response.status === 200) {
         let data = await response.json();
-        console.log("MOVIE DETAILS");
-        console.log(data);
-        document.title = "Movie Details: "+ data.title;
+        // console.log("MOVIE DETAILS");
+        // console.log(data);
 
+        document.title = "Movie Details: "+ data.title;
         $("#nameOfMovie").text(data.title + "  ");
 
         var imagePath;
@@ -30,11 +33,15 @@ async function getMovieDetails() {
             imagePath = data.backdrop_path;
         }
 
+        if(imagePath == null){
+            imagePath = data.backdrop_path;
+        }
+
         $(".movie-details").prepend(
-            `<div class="col-12 col-md-6">
+            `<div class="col-12 col-md-6" id="${movieID}">
                 <img src="https://image.tmdb.org/t/p/original${imagePath}" alt=${data.title}>
             </div>
-            
+
             <div class="col-12 col-md-6 px-3 mt-3 mt-md-0">
                 <h1 id="movieName" class="text-white details-page-movie-name">${data.title}</h1>
                 <div class="movie-descriptions mt-3">
@@ -42,7 +49,8 @@ async function getMovieDetails() {
                         <p class="adult">${data.adult? "18+" : "4+"}</p>
                         <p class="release-date">${getYear(data.release_date)}</p>
                         <p class="duration">${getTime(data.runtime)}</p>
-                        <p class="genre detail-genre" role="button" id="${data.genres[0].id}">${data.genres[0].name}</p>
+                        <p class="genre detail-genre text-decoration-underline" role="button" id="${data.genres[0].id}">${data.genres[0].name}</p>
+                        <p class="trailer detail-trailer text-decoration-underline" role="button" id="watchTrailer">Trailer</p>
                     </div>
                     <div class="movie-descriptions-center">
                         <p class="ratings"><span class="detail-label">Ratings : </span> ${data.vote_average} / 10</p>
@@ -77,7 +85,7 @@ async function getCastDetails(){
     if (response.status === 200) {
         let data = await response.json();
         // console.log("CAST DETAILS");
-        // console.log(data);  
+        // console.log(data);
 
         // CAST
         for(var i = 0; i < data.cast.length; i++){
@@ -89,26 +97,47 @@ async function getCastDetails(){
             $("#crew-names").append(`<p class="crew-cast-name col-12 col-sm-6 col-md-4 col-lg-3" role="button" id="${data.crew[i].original_name}">${data.crew[i].original_name}<span class="text-secondary"> <br> - ${data.crew[i].job}</span></p>`);
         }
 
+        if(data.cast == ""){
+            $(".tab-content").text("Cannot find Cast names in our database");
+        }
+        if(data.crew == ""){
+            $(".tab-content").text("Cannot find Crew names in our database");
+        }
+
     }
 
 }
 
 async function getSimilarMovies(){
-    let response = await fetch(baseUrl + movieID + '/recommendations?api_key=' + API_KEY + '&language=en-US');
+    let response = await fetch(baseUrl + movieID + '/recommendations?api_key=' + API_KEY + '&language=en-US&page=1');
 
     if (response.status === 200) {
         let data = await response.json();
         // console.log("SIMILAR MOVIES");
         // console.log(data);
 
+        if(data.results.length === 0){
+            $(".similar-movies").css("display", "none");
+        }
+
         for(var i = 0; i < 4; i++){
-            var imgPath = data.results[i].backdrop_path;
+
+            var imagePath;
+            if(data.belongs_to_collection){
+                imagePath = data.results[i].belongs_to_collection.backdrop_path;
+            }else{
+                imagePath = data.results[i].backdrop_path;
+            }
+
+            if(imagePath == null){
+                imagePath = data.results[i].backdrop_path;
+            }
 
             $(".similar-movies").append(
-                `<div class="col-12 col-md-4 col-lg-3 similar-movie-card py-2 mb-4">
+                `<div class="col-12 col-md-4 col-lg-3 similar-movie-card py-2 mb-4" id="${data.results[i].title}">
                     <div class="similar-movie-card-wrapper m-2" id="${data.results[i].id}">
                         <div class="similar-movie-image">
-                            <img class="similar-movie-poster" src="https://image.tmdb.org/t/p/original${imgPath}" alt="${data.results[i].title}">
+                            <img class="similar-movie-poster" src="https://image.tmdb.org/t/p/original${imagePath}" alt="${data.results[i].title}">
                         </div>
                         <div class="similar-movie-desc pb-0">
                             <div class="d-flex flex-column">
@@ -132,6 +161,28 @@ async function getSimilarMovies(){
     }); 
 }
 
+var trailerKeys = [];
+async function getTrailer(){
+    let response = await fetch(baseUrl + movieID +"/videos?api_key="+ API_KEY +"&language=en-US");
+
+        if (response.status === 200) {
+            let data = await response.json();
+            var trailerData = data.results;
+            // console.log(trailerData);
+
+            if (trailerData.length === 0){
+                $("#watchTrailer").addClass("disabled");
+            }
+
+            for(var i = 0; i < trailerData.length; i++){
+                if(trailerData[i].type === "Trailer"){
+                    trailerKeys.push(trailerData[i].key);
+                }
+            }
+        }
+        
+    }
+
 $("#cast-tab").on("click", function(){
     $("#castOrCrew").text("Cast")
 });
@@ -147,6 +198,10 @@ $(document).on('click', '.crew-cast-name', function() {
 $(document).on('click', '.detail-genre', function() { 
     var genreID = $(".detail-genre").attr("id");
     window.location = 'movies.html?id=' + genreID;
+});
+
+$(document).on('click', '#watchTrailer', function(){
+    window.open("https://www.youtube.com/watch?v=" + trailerKeys[0]);
 });
 
 $(document).on('click', '.similar-movie-card', function() { 

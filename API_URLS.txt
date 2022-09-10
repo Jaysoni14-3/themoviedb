@@ -29,5 +29,4 @@
     https://api.themoviedb.org/3/movie/361743/videos?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US
         get results[i].key and pass it in youtube url after "v=" 
             ex-https://www.youtube.com/watch?v=EM2SmqGFTpo
-
-ニューハーフ強●ドM化実験 被験者＃01 さくや
+            ex-https://www.youtube.com/watch?v=DtQycgMD4HQ
