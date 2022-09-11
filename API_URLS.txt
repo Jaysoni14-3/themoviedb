@@ -30,3 +30,35 @@
         get results[i].key and pass it in youtube url after "v=" 
             ex-https://www.youtube.com/watch?v=EM2SmqGFTpo
             ex-https://www.youtube.com/watch?v=DtQycgMD4HQ
+
+
+----------- TV SHOWS ----------
+
+
+-> apiURL FOR POPULAR TV SHOWS
+    https://api.themoviedb.org/3/tv/popular?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US&page=1
+
+-> apiURL FOR TV SHOWS SEARCH
+    https://api.themoviedb.org/3/search/tv?api_key=6ecb3c9eae671fa03e06b15bbda19db8&query={QUERY}&language=en-US&page=1
+
+-> apiURL FOR TOP RATED TV SHOWS
+    https://api.themoviedb.org/3/tv/top_rated?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US&page=1
+
+-> apiURL FOR TV SHOW DETAILS 
+    https://api.themoviedb.org/3/tv/{TV_ID}?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US
+
+-> apiURL FOR TV SHOW RECOMMENDATIONS 
+    https://api.themoviedb.org/3/tv/{TV_ID}/recommendations?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US&page=1
+
+-> apiURL FOR TV SHOW CREW AND CAST 
+    https://api.themoviedb.org/3/tv/{TV_ID}/credits?api_key=6ecb3c9eae671fa03e06b15bbda19db8&language=en-US
+
+
+
+FRIENDS tv show id - 1668
+one piece tv show id - 111110
+
+
+
+
+Check this - TV Seasons

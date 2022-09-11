@@ -17,6 +17,11 @@
     box-sizing: border-box;
 }
 
+.fixed-width-btn{
+    min-width: 130px;
+    max-width: 130px;
+}
+
 .max-content-btn{
     width: max-content !important;
 }
@@ -102,6 +107,7 @@ img{
 
 #showMoreBtn,
 .showMoreMoviesBtn,
+.showMoreTrendingMoviesBtn,
 .fetchNextPage{
     bottom: -60px;
     left: 50%;

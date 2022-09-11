@@ -33,7 +33,7 @@
                         <a href="./tv-shows.html" class="nav-link">Tv Shows</a>
                     </li>
                     <li class="nav-item ms-0 ms-lg-3">
-                        <a href="#" class="nav-link">Latest</a>
+                        <a href="./trending-movies.html" class="nav-link">Trending</a>
                     </li>
                 </ul>
                 <!-- <div class="d-flex" role="search">
@@ -45,11 +45,11 @@
     </nav>
 
 
-     <div class="d-flex flex-column flex-sm-row search-movie-field mx-auto mt-4">
+    <div class="d-flex flex-column flex-sm-row search-movie-field mx-auto mt-4">
         <input class="form-control searchBox ms-auto me-auto me-sm-2" id="searchField" type="search" placeholder="Try searching a movie name" aria-label="Search">
-        <div class="d-flex flex-column flex-sm-row align-items-center ms-auto me-auto ms-sm-0 mt-2 mt-sm-0">
-            <button class="max-content-btn btn btn-outline-danger me-2" id="searchFieldBtn" type="submit"><i class="fa-solid fa-magnifying-glass me-2"></i>Search</button>
-            <select name="genre" id="listOfGenres" class="allMovies btn btn-light text-start mt-2 mt-sm-0">
+        <div class="d-flex flex-row flex-sm-row align-items-center flex-wrap ms-auto me-auto ms-sm-0 mt-1 mt-sm-0">
+            <button class="fixed-width-btn btn btn-outline-danger mt-1 mt-sm-0 me-2" id="searchFieldBtn" type="submit"><i class="fa-solid fa-magnifying-glass me-2"></i>Search</button>
+            <select name="genre" id="listOfGenres" class="allMovies fixed-width-btn btn btn-light text-start mt-1 mt-sm-0">
                 <option value="0">Show All</option>
                 <option value="28">Action</option>
                 <option value="12">Adventure</option>
@@ -75,7 +75,7 @@
     </div>
 
 
-    <div class="all-movies-lists position-relative  mt-5">
+    <div class="all-movies-lists position-relative mt-5">
 
         <div class="allMovies row container-xxl mx-auto" id="displayMovies" style="margin-bottom: 150px; --bs-gutter-x: 0">
             

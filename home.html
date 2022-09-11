@@ -34,7 +34,7 @@
                         <a href="./html/tv-shows.html" class="nav-link">Tv Shows</a>
                     </li>
                     <li class="nav-item ms-0 ms-lg-3">
-                        <a href="#" class="nav-link ">Latest</a>
+                        <a href="./html/trending-movies.html" class="nav-link">Trending</a>
                     </li>
                 </ul>
                 <div class="d-flex" role="search">
@@ -59,25 +59,33 @@
         </div>
 
         
-        <div class="latest-movies-lists row container-xxl mx-auto mt-5" style="margin-bottom: 150px; --bs-gutter-x: 0">
-            
-            <!-- <div class="col-12 col-md-4 col-lg-3 movie-card py-2 mb-2">
-                <div class="movie-card-wrapper p-2">
-                    <div class="movie-image">
-                        <img src="../images/popcorn.jpg" alt="">
-                    </div>
-                    <div class="movie-desc d-flex flex-column p-3 ps-0 pb-0">
-                        <span class="text-white movie-name">Popcorn</span>
-                        <span class="text-secondary movie-rating mt-2">8.5</span>
-                        <span class="text-secondary movie-relase-date">Released Aug 24, 2022</span>
-                    </div>
-                    <div class="movie-btn p-3 ps-0">
-                        <button class="btn btn-sm btn-outline-danger text-white">View Movie</button>
-                    </div>
-                </div>
-            </div> -->
+        <div class="d-flex flex-column container-xxl mx-auto mt-5" style="margin-bottom: 150px; --bs-gutter-x: 0">
 
+            <h3 class="ps-3 text-secondary text-decoration-underline detail-label pt-2">Popular Movies </h3>
+            <div class="popular-movies-lists row">
+                <!-- <div class="col-12 col-md-4 col-lg-3 movie-card py-2 mb-2">
+                
+                    <div class="movie-card-wrapper p-2">
+                        <div class="movie-image">
+                            <img src="../images/popcorn.jpg" alt="">
+                        </div>
+                        <div class="movie-desc d-flex flex-column p-3 ps-0 pb-0">
+                            <span class="text-white movie-name">Popcorn</span>
+                            <span class="text-secondary movie-rating mt-2">8.5</span>
+                            <span class="text-secondary movie-relase-date">Released Aug 24, 2022</span>
+                        </div>
+                        <div class="movie-btn p-3 ps-0">
+                            <button class="btn btn-sm btn-outline-danger text-white">View Movie</button>
+                        </div>
+                    </div>
+                </div> -->
+            
+            </div>
             <button class="max-content-btn d-none btn btn-dark text-danger mx-auto mt-3 mb-3" id="showAllRecentMoviesBtn">Show All</button>
+
+            <h3 class="ps-3 text-secondary text-decoration-underline detail-label pt-2">Trending Movies </h3>
+            <div class="trending-movies-lists row"></div>
+            <button class="max-content-btn d-none btn btn-dark text-danger mx-auto mt-3 mb-3" id="showAllTrendingMoviesBtn">Show All</button>
 
         </div>
     

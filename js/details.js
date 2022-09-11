@@ -1,7 +1,7 @@
 const baseUrl = "https://api.themoviedb.org/3/movie/";
 const API_KEY = "6ecb3c9eae671fa03e06b15bbda19db8";
 
-const movieID = localStorage.getItem("MovieId");
+var movieID = localStorage.getItem("MovieId");
 
 // const movieID = window.location.search.substring(1).substring(3);
 var movieName;
@@ -43,9 +43,9 @@ async function getMovieDetails() {
             </div>
 
             <div class="col-12 col-md-6 px-3 mt-3 mt-md-0">
-                <h1 id="movieName" class="text-white details-page-movie-name">${data.title}</h1>
+                <h1 id="movieName" class="text-white text-center text-sm-start details-page-movie-name">${data.title}</h1>
                 <div class="movie-descriptions mt-3">
-                    <div class="movie-descriptions-top d-flex align-items-center mt-2">
+                    <div class="movie-descriptions-top d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start mt-2">
                         <p class="adult">${data.adult? "18+" : "4+"}</p>
                         <p class="release-date">${getYear(data.release_date)}</p>
                         <p class="duration">${getTime(data.runtime)}</p>
@@ -54,10 +54,10 @@ async function getMovieDetails() {
                     </div>
                     <div class="movie-descriptions-center">
                         <p class="ratings"><span class="detail-label">Ratings : </span> ${data.vote_average} / 10</p>
-                        <div class="language d-flex"><span class="detail-label me-2">Language :</span><p class="language-spoken mb-0"></p></div>
+                        <div class="language d-flex flex-wrap"><span class="detail-label">Language : </span><p class="language-spoken mb-0 ms-1"></p></div>
                         <p class="overview mt-3"><span class="detail-label">overview : </span> ${data.overview}</p> 
                         <p class="released-status"><span class="detail-label">Released-status : </span> ${data.status}</p>
-                        <div class="allGenres d-flex"><span class="detail-label me-2">Genres : </span><div id="allGenres"></div></div>
+                        <div class="allGenres d-flex flex-wrap"><span class="detail-label">Genres : </span><div class="ms-1" id="allGenres"></div></div>
                     </div>
                 </div>
             </div>`
@@ -151,7 +151,7 @@ async function getSimilarMovies(){
         }
     
     }
-    $(".similar-movie-poster").each(function() {  
+    $(".similar-movie-poster").each(function() {
         var nullImage = "https://image.tmdb.org/t/p/originalnull";  
         imgsrc = this.src;
         if(imgsrc === nullImage){
@@ -181,7 +181,7 @@ async function getTrailer(){
             }
         }
         
-    }
+}
 
 $("#cast-tab").on("click", function(){
     $("#castOrCrew").text("Cast")
@@ -206,12 +206,13 @@ $(document).on('click', '#watchTrailer', function(){
 
 $(document).on('click', '.similar-movie-card', function() { 
     var selectedMovieID = $(this).children().attr("id");
-    window.location = 'details.html?id=' + selectedMovieID;
+    window.location = 'details.html?movie=' + $(this).attr("id").toLowerCase().replaceAll(" ", "-");
+    movieID = localStorage.setItem("MovieId", selectedMovieID);
 });
 
 function getYear(releaseDate){
     var dateToFormat = new Date(releaseDate);
-    var year = dateToFormat.getFullYear();
+    var year = dateToFormat.getFullYear();  
     return year;
 }
 
