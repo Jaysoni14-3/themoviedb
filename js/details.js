@@ -216,7 +216,7 @@ async function getTrailer(){
             //     $("#watchTrailer").addClass("disabled");
             // }
 
-            if(trailerData.length === 0){
+            if(trailerData.length == 0){
                 $("#watchTrailer").addClass("disabled");
             }
             
@@ -247,7 +247,13 @@ $(document).on('click', '.detail-genre', function() {
 });
 
 $(document).on('click', '#watchTrailer', function(){
-    window.open("https://www.youtube.com/watch?v=" + trailerKeys[0]);
+    if(trailerKeys[0] == "undefined" || trailerKeys[0] == undefined){
+        alert("No trailer found ");
+        $("#watchTrailer").addClass("disabled");
+        return;
+    }else{
+        window.open("https://www.youtube.com/watch?v=" + trailerKeys[0]);
+    }
 });
 
 $(document).on('click', '.similar-movie-card', function() { 

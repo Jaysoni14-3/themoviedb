@@ -122,6 +122,10 @@ async function fetchMovieByName(pageNo){
         let data = await response.json();
         console.log(data);
 
+        if(data.results.length === 0){
+            alert("Sorry cannot find " + movieNameInput);
+        }
+
         checkIfNextPage(data);
 
         for(var i = 0; i < data.results.length; i++){
