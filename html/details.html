@@ -13,6 +13,7 @@
 </head>
 <body class="bg-black">
     
+    <!-- NAVBAR -->
     <nav class="navbar navbar-dark navbar-expand-lg ">
         <div class="container-fluid ps-2 ps-sm-5 pe-2 pe-sm-5" >
             <a class="navbar-brand text-danger" href="../home.html">Movie</a>
@@ -43,38 +44,72 @@
     </nav>
 
     <div class="movie-details-wrapper">
-        <div class="movie-details container-xxl row mx-auto mt-5" style="--bs-gutter-x: 0">
 
+        <!-- MOVIE POSTER AND DESCRIPTION -->
+        <div class="movie-details-outer">
+            <div class="overlay">    
+                <div class="movie-details container-xxl row mx-auto pt-5 pb-5" style="--bs-gutter-x: 0"></div>
+            </div>
         </div>
 
-        <div class="similar-movies container-xxl row mx-auto mt-5" style="--bs-gutter-x: 0">
-            <h4 class="text-secondary ms-3">Similar movies</h4>
-        </div>
+        <!-- ALL IMAGES -->
+        <div class="movie-images container-xxl mt-5" style="--bs-gutter-x: 0">
+            <h4 class="text-white ">Media</h4>
+            <!-- <div class="images-container d-flex overflow-scroll"></div> -->
 
-
-        <div class="crew-cast-container container-xxl mt-3 " style="--bs-gutter-x: 0">
-
-            <div class="detail-label m-2 ms-3 ms-lg-0" id="crew-cast-container-header"> <span id="nameOfMovie"></span> <h4 class="text-white text-uppercase" id="castOrCrew">Cast </h4></div>
+            <div class="backdrop-poster-tab-wrapper mb-5 m-2 ms-3 ms-lg-0">
+                <ul id="movieImages" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-dark" role="tablist">
+                    <li class="nav-item flex-sm-fill border-0 text-uppercase font-weight-bold">
+                        <button id="backdrop-tab" class="nav-link text-white w-100 active" data-bs-toggle="tab" data-bs-target="#backdropTabContent">Backdrops</button>
+                    </li>
+                    <li class="nav-item flex-sm-fill border-0 text-uppercase font-weight-bold ">
+                        <button id="poster-tab" class="nav-link text-white w-100" data-bs-toggle="tab" data-bs-target="#posterTabContent">Posters</button>
+                    </li>
+                </ul>
                 
-                <div class="border mb-5 m-2 ms-3 ms-lg-0">
-                    <ul id="crew-cast-tab" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-dark" role="tablist">
-                        <li class="nav-item flex-sm-fill border-0 text-uppercase font-weight-bold">
-                            <button id="cast-tab" class="nav-link text-white w-100 active" data-bs-toggle="tab" data-bs-target="#castTabContent">Cast</button>
-                        </li>
-                        <li class="nav-item flex-sm-fill border-0 text-uppercase font-weight-bold ">
-                            <button id="crew-tab" class="nav-link text-white w-100" data-bs-toggle="tab" data-bs-target="#crewTabContent">Crew</button>
-                        </li>
-                    </ul>
-                    
-                    <div class="tab-content text-white border">
-                        <div id="castTabContent" class=" tab-pane fade px-2 mt-2 show active" role="tabpanel">
-                            <div id="cast-names" class="d-flex flex-wrap"></div>
-                        </div>
-                        <div id="crewTabContent" class="tab-pane fade px-2 mt-2" role="tabpanel">
-                            <div id="crew-names" class="row d-flex flex-wrap"></div>
-                        </div>                
+                <div class="tab-content text-white ">
+                    <div id="backdropTabContent" class=" tab-pane fade px-2 mt-2 show active" role="tabpanel">
+                        <div id="backdrop-images" class="d-flex"></div>
+                    </div>
+                    <div id="posterTabContent" class="tab-pane fade px-2 mt-2" role="tabpanel">
+                        <div id="poster-images" class="d-flex"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- SIMILAR MOVIES CONTAINER -->
+        <div class="similar-movies container-xxl row mx-auto mt-5" style="--bs-gutter-x: 0">
+            <h4 class="text-white">Similar movies</h4>
+        </div>
+
+        <!-- CREW AND CAST CONTAINER  -->
+        <div class="crew-cast-container container-xxl mt-3 " style="--bs-gutter-x: 0">
+
+            <div class="detail-label m-2  ms-lg-0" id="crew-cast-container-header">
+                <span class="" id="nameOfMovie"></span> 
+                <h4 class="text-white text-uppercase" id="castOrCrew">Cast </h4>
+            </div>
+                
+            <div class="crew-cast-tab-wrapper border mb-5 m-2 ms-3 ms-lg-0">
+                <ul id="crew-cast-tab" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-dark" role="tablist">
+                    <li class="nav-item flex-sm-fill border-0 text-uppercase font-weight-bold">
+                        <button id="cast-tab" class="nav-link text-white w-100 active" data-bs-toggle="tab" data-bs-target="#castTabContent">Cast</button>
+                    </li>
+                    <li class="nav-item flex-sm-fill border-0 text-uppercase font-weight-bold ">
+                        <button id="crew-tab" class="nav-link text-white w-100" data-bs-toggle="tab" data-bs-target="#crewTabContent">Crew</button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content text-white border">
+                    <div id="castTabContent" class=" tab-pane fade px-2 mt-2 show active" role="tabpanel">
+                        <div id="cast-names" class="d-flex flex-wrap"></div>
+                    </div>
+                    <div id="crewTabContent" class="tab-pane fade px-2 mt-2" role="tabpanel">
+                        <div id="crew-names" class="row d-flex flex-wrap"></div>
+                    </div>
+                </div>
+            </div>
 
         </div>
             

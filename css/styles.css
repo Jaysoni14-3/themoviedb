@@ -5,6 +5,7 @@
     --clr-white: #ffffff;
     --clr-black: #000000;
     --clr-gray: #D3D3D3;
+    --border-radius: 15px;
     --font-popins: 'Poppins', sans-serif;
     --font-montserrat: 'Montserrat', sans-serif;
 }
@@ -125,7 +126,26 @@ img{
     background-color: var(--clr-gray) !important;
 }
 
-/* MOVIE DESCRIPTIONS */
+/* MOVIE DETAILS */
+
+.movie-details-outer{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.overlay{
+    /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0.93), rgba(0, 0, 0, 0.84) 100%); */
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.93), rgba(0, 0, 0, 0.8) 100%);
+}
+
+.movie-detail-image img,
+.backdrop-img,
+.poster-img,
+.similar-movie-poster{
+    border-radius: var(--border-radius);
+}
+
 .movie-descriptions{
     color: var(--clr-white);
     font-family: var(--font-montserrat);
@@ -178,10 +198,64 @@ img{
     line-height: 1.8;
 }
 
+/* MOVIE DETAILS MEDIA */
+
+#backdropTabContent::-webkit-scrollbar,
+#posterTabContent::-webkit-scrollbar {
+    width: 100%;
+    height: 10px;
+}
+
+#castTabContent::-webkit-scrollbar,
+#crewTabContent::-webkit-scrollbar {
+    width: 10px;
+}
+
+#backdropTabContent::-webkit-scrollbar-track,
+#posterTabContent::-webkit-scrollbar-track ,
+#castTabContent::-webkit-scrollbar-thumb,
+#crewTabContent::-webkit-scrollbar-thumb {
+    background-color:#343a40;
+    border-radius: var(--border-radius);
+}
+
+#backdropTabContent::-webkit-scrollbar-thumb,
+#posterTabContent::-webkit-scrollbar-thumb ,
+#castTabContent::-webkit-scrollbar-thumb,
+#crewTabContent::-webkit-scrollbar-thumb {
+    background-color: var(--clr-red);
+    border-radius: var(--border-radius);
+}
+
+#backdropTabContent,
+#posterTabContent{
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.poster{
+    margin-bottom: 5px;
+    min-height: 270px;
+    max-height: 270px;
+}
+
+.poster-img{
+    width: 200px;
+    height: 100%;
+    margin-right: 15px;
+}
+
+.poster .backdrop-img{
+    width: 500px;
+    margin-right: 15px;
+    height: 100%;
+}
+
 
 /* SIMILAR MOVIES  */
 
 .similar-movie-card-wrapper {
+    border-radius: var(--border-radius) !important;
     background-color: #212121;
     position: relative;
 }
@@ -250,3 +324,6 @@ img{
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+
+

@@ -84,6 +84,8 @@ async function fetchAllMovies(pageNo){
         let data = await response.json();
         // console.log(data.results);
 
+        checkIfNextPage(data);
+
         for(var i = 0; i < data.results.length; i++){
             $("#displayMovies").append(
                 `<div class="col-12 col-md-4 col-lg-3 movie-card py-2 mb-4" id="${data.results[i].title}">
@@ -114,11 +116,13 @@ async function fetchAllMovies(pageNo){
 
 async function fetchMovieByName(pageNo){
     var response = await fetch(baseUrl + 'search/movie?api_key=' + API_KEY + '&query=' + movieNameInput + '&page=' + pageNo);
-    console.log(baseUrl + 'search/movie?api_key=' + API_KEY + '&query=' + movieNameInput + '&page=' + pageNo);
+    // console.log(baseUrl + 'search/movie?api_key=' + API_KEY + '&query=' + movieNameInput + '&page=' + pageNo);
 
     if(response.status === 200){
         let data = await response.json();
-        console.log(data.results);
+        console.log(data);
+
+        checkIfNextPage(data);
 
         for(var i = 0; i < data.results.length; i++){
             $("#displayMovies").append(
@@ -146,6 +150,7 @@ async function fetchMovieByName(pageNo){
             $(this).prop("alt", "No Image to display");
         }
     }); 
+
 }
 
 async function getMoviesByGenre(pageNo){
@@ -153,13 +158,13 @@ async function getMoviesByGenre(pageNo){
         fetchAllMovies(pageNumber);
     }
     let response = await fetch("https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&with_genres=" + genreID + "&page=" + pageNo);
-    // console.log(moviesByGenreURL);
-    console.log('https://api.themoviedb.org/3/discover/movie?api_key=' + API_KEY + '&with_genres=' + genreID + '&page=' + pageNo);
 
     if(response.status === 200){
         var data = await response.json();
         // console.log("GENRES")
         // console.log(data.results);
+
+        checkIfNextPage(data)
 
         for(var i = 0; i < data.results.length; i++){
             $("#displayMovies").append(

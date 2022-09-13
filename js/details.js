@@ -1,6 +1,7 @@
 const baseUrl = "https://api.themoviedb.org/3/movie/";
 const API_KEY = "6ecb3c9eae671fa03e06b15bbda19db8";
 
+
 var movieID = localStorage.getItem("MovieId");
 
 // const movieID = window.location.search.substring(1).substring(3);
@@ -11,17 +12,18 @@ $("document").ready(function(){
     getSimilarMovies();
     getCastDetails();
     getTrailer();
+    getAllImages();
 });
 
-async function getMovieDetails() {
+async function getMovieDetails(){
     
     let response = await fetch(baseUrl + movieID + '?api_key=' + API_KEY + '&language=en-US');
-    // console.log(baseUrl + movieID + '?api_key=' + API_KEY + '&language=en-US')
+    // console.log(baseUrl + movieID + '?api_key=' + API_KEY + '&language=en-US');
 
     if (response.status === 200) {
         let data = await response.json();
         // console.log("MOVIE DETAILS");
-        // console.log(data);
+        console.log(data);
 
         document.title = "Movie Details: "+ data.title;
         $("#nameOfMovie").text(data.title + "  ");
@@ -38,11 +40,13 @@ async function getMovieDetails() {
         }
 
         $(".movie-details").prepend(
-            `<div class="col-12 col-md-6" id="${movieID}">
-                <img src="https://image.tmdb.org/t/p/original${imagePath}" alt=${data.title}>
+            `<div class="col-12 col-md-12 col-lg-6" id="${movieID}">
+                <div class="movie-detail-image">
+                    <img src="https://image.tmdb.org/t/p/original${imagePath}" alt=${data.title}>
+                </div>
             </div>
 
-            <div class="col-12 col-md-6 px-3 mt-3 mt-md-0">
+            <div class="col-12 col-md-12 col-lg-6 px-3 mt-3 mt-md-0">
                 <h1 id="movieName" class="text-white text-center text-sm-start details-page-movie-name">${data.title}</h1>
                 <div class="movie-descriptions mt-3">
                     <div class="movie-descriptions-top d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start mt-2">
@@ -62,6 +66,7 @@ async function getMovieDetails() {
                 </div>
             </div>`
         );
+        $(".movie-details-outer").css("background-image", "url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces"+ imagePath +")");
 
         if(data.runtime == 0){
             $(".duration").css("display", "none");
@@ -98,10 +103,10 @@ async function getCastDetails(){
         }
 
         if(data.cast == ""){
-            $(".tab-content").text("Cannot find Cast names in our database");
+            $(".crew-cast-tab-wrapper .tab-content").text("Cannot find Cast names in our database");
         }
         if(data.crew == ""){
-            $(".tab-content").text("Cannot find Crew names in our database");
+            $(".crew-cast-tab-wrapper .tab-content").text("Cannot find Crew names in our database");
         }
 
     }
@@ -159,6 +164,43 @@ async function getSimilarMovies(){
             $(this).prop("src", "../images/no-image.jpg");
         }
     }); 
+}
+
+async function getAllImages(){
+    let response = await fetch(baseUrl + movieID + '/images?api_key=' + API_KEY + '&language=en-US&include_image_language=en,null');
+
+    if(response.status === 200){
+        let data = await response.json();
+        var posters = data.posters;
+        var backdrops = data.backdrops;
+
+        $("#backdrop-tab").text("Backdrops ("+ backdrops.length +')');
+        $("#poster-tab").text("Posters ("+ posters.length +')');
+
+        console.log(data);
+
+        for(var i = 0; i < backdrops.length; i++){
+            var imageURL = backdrops[i].file_path;
+    
+            $("#backdrop-images").append(`
+                <div class="poster">
+                    <img class="backdrop-img" src="https://image.tmdb.org/t/p/original${imageURL}" alt="">
+                </div>
+            `);
+        }
+
+        for(var i = 0; i < posters.length; i++){
+            var imageURL = posters[i].file_path;
+
+            $("#poster-images").append(`
+                <div class="poster">
+                    <img class="poster-img" src="https://image.tmdb.org/t/p/original${imageURL}" alt="">
+                </div>
+            `);
+        }
+       
+    }
+
 }
 
 var trailerKeys = [];
@@ -222,3 +264,28 @@ function getTime(minutes) {
     m = m < 10 ? '0' + m : m; 
     return h + 'h ' + m + 'm';
 }
+
+
+
+
+//  for(var i = 0; i < posters.length; i++){
+//     var imageURL = posters[i].file_path;
+
+//     $(".images-container").append(`
+//         <div class="poster">
+//             <img class="poster-img" src="https://image.tmdb.org/t/p/w185${imageURL}" alt="">
+//         </div>
+//     `);
+// }
+
+// if(posters.length === 0){
+    // for(var i = 0; i < backdrops.length; i++){
+    //     var imageURL = backdrops[i].file_path;
+
+    //     $(".images-container").append(`
+    //         <div class="poster">
+    //             <img class="backdrop-img" src="https://image.tmdb.org/t/p/w342${imageURL}" alt="">
+    //         </div>
+    // `);
+    // }
+// }

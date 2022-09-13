@@ -42,3 +42,15 @@ $(document).on('click', '.movie-card-wrapper', function() {
     window.location = '../html/details.html?movie='+ movieName.toLowerCase();
 });
 
+
+// Disable next button if no more data from api
+function checkIfNextPage(data){
+
+    var totalPages = data.total_pages;
+    var currentPage = pageNumber;
+
+    if(currentPage === totalPages){
+        $(".showMoreMoviesBtn").attr("disabled", true);
+        $(".showMoreTrendingMoviesBtn").attr("disabled", true);
+    }
+}

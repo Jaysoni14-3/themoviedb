@@ -9,11 +9,12 @@ $("document").ready(function() {
 
 async function fetchTrendingMovies(pageNo) {
     let response = await fetch(baseUrl + 'trending/movie/week?api_key=' + API_KEY + "&page=" + pageNo);
-    console.log(baseUrl + 'trending/movie/week?api_key=' + API_KEY + "&page=" + pageNo)
     
     if (response.status === 200) {
         let data = await response.json();
-        console.log(data.results)
+        console.log(data);
+
+        checkIfNextPage(data);
         
         for(var i = 0; i < data.results.length; i++){
             var imgPath = data.results[i].backdrop_path;
