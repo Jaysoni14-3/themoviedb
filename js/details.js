@@ -23,7 +23,7 @@ async function getMovieDetails(){
     if (response.status === 200) {
         let data = await response.json();
         // console.log("MOVIE DETAILS");
-        console.log(data);
+        // console.log(data);
 
         document.title = "Movie Details: "+ data.title;
         $("#nameOfMovie").text(data.title + "  ");
@@ -54,7 +54,7 @@ async function getMovieDetails(){
                         <p class="release-date">${getYear(data.release_date)}</p>
                         <p class="duration">${getTime(data.runtime)}</p>
                         <p class="genre detail-genre text-decoration-underline" role="button" id="${data.genres[0].id}">${data.genres[0].name}</p>
-                        <p class="trailer detail-trailer text-decoration-underline" role="button" id="watchTrailer">Trailer</p>
+                        <p class="trailer detail-trailer text-decoration-underline" role="button" id="watchTrailer">Watch Trailer</p>
                     </div>
                     <div class="movie-descriptions-center">
                         <p class="ratings"><span class="detail-label">Ratings : </span> ${data.vote_average} / 10</p>
@@ -177,7 +177,7 @@ async function getAllImages(){
         $("#backdrop-tab").text("Backdrops ("+ backdrops.length +')');
         $("#poster-tab").text("Posters ("+ posters.length +')');
 
-        console.log(data);
+        // console.log(data);
 
         for(var i = 0; i < backdrops.length; i++){
             var imageURL = backdrops[i].file_path;
@@ -212,10 +212,14 @@ async function getTrailer(){
             var trailerData = data.results;
             // console.log(trailerData);
 
-            if (trailerData.length === 0){
+            // if (trailerKeys.length === 0){
+            //     $("#watchTrailer").addClass("disabled");
+            // }
+
+            if(trailerData.length === 0){
                 $("#watchTrailer").addClass("disabled");
             }
-
+            
             for(var i = 0; i < trailerData.length; i++){
                 if(trailerData[i].type === "Trailer"){
                     trailerKeys.push(trailerData[i].key);
