@@ -330,4 +330,38 @@ img{
 }
 
 
+/* FOOTER */
+.footer-text{
+    font-size: 18px;
+    cursor: default;
+}
 
+.footer-text span{
+    font-weight: bold;
+    color: var(--clr-red);
+}
+
+.footer-text span:hover{
+    border-bottom: 1px solid var(--clr-red);
+}
+
+.social-links-container a{
+    font-size: 20px;
+    padding: 2px 10px;
+    margin-left: 20px;
+    filter: grayscale(100%);
+    border-radius: 50%;
+    outline: 1px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.social-links-container a:first-child{
+    margin-left: 0;
+}
+
+.social-links-container a:hover{
+    outline-color: rgb(61, 61, 61);
+    filter: grayscale(0%);
+    transform: scale(1.5);
+    background-color: rgb(61, 61, 61);
+}
