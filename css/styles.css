@@ -251,6 +251,10 @@ img{
     height: 100%;
 }
 
+#previewImageModal{
+    z-index: 100000;
+}
+
 
 /* SIMILAR MOVIES  */
 

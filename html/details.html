@@ -68,11 +68,20 @@
                 </ul>
                 
                 <div class="tab-content text-white ">
-                    <div id="backdropTabContent" class=" tab-pane fade px-2 mt-2 show active" role="tabpanel">
-                        <div id="backdrop-images" class="d-flex"></div>
+                    <div id="backdropTabContent" class=" tab-pane fade px-2 pb-3 mt-2 show active" role="tabpanel">
+                        <div id="backdrop-images" class="d-flex align-items-center">
+                            <div>
+                                <button id="showAllBackdrop" class="btn btn-danger me-3 px-3">Show All</button>
+                            </div>
+                        </div>
+                       
                     </div>
-                    <div id="posterTabContent" class="tab-pane fade px-2 mt-2" role="tabpanel">
-                        <div id="poster-images" class="d-flex"></div>
+                    <div id="posterTabContent" class="tab-pane fade px-2 pb-5 mt-2" role="tabpanel">
+                        <div id="poster-images" class="d-flex align-items-center">
+                            <div>
+                                <button id="showAllPoster" class="btn btn-danger me-3 px-3">Show All</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,6 +122,34 @@
 
         </div>
             
+    </div>
+  
+    <!-- PREVIEW SINGLE IMAGE Modal -->
+    <div class="modal fade" id="previewImageModal" tabindex="-1" aria-labelledby="previewImageModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>  
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="" id="previewSrc" alt="">
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="showAllImages" tabindex="-1" aria-labelledby="showAllImages" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>  
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex align-items-center justify-content-center flex-wrap"></div>
+            </div>
+        </div>
     </div>
 
 

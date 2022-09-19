@@ -9,9 +9,9 @@ var movieName;
 
 $("document").ready(function(){
     getMovieDetails();
+    getTrailer();
     getSimilarMovies();
     getCastDetails();
-    getTrailer();
     getAllImages();
 });
 
@@ -25,8 +25,10 @@ async function getMovieDetails(){
         // console.log("MOVIE DETAILS");
         // console.log(data);
 
-        document.title = "Movie Details: "+ data.title;
-        $("#nameOfMovie").text(data.title + "  ");
+        movieName = data.title;
+
+        document.title = "Movie Details: "+ movieName;
+        $("#nameOfMovie").text(movieName + "  ");
 
         var imagePath;
         if(data.belongs_to_collection){
@@ -179,29 +181,89 @@ async function getAllImages(){
 
         // console.log(data);
 
-        for(var i = 0; i < backdrops.length; i++){
-            var imageURL = backdrops[i].file_path;
+        if(backdrops.length > 10){
+            for(var i = 0; i < 5; i++){
+                var imageURL = backdrops[i].file_path;
+                
+                $("#backdrop-images").prepend(`
+                    <div class="poster">
+                        <img class="backdrop-img" loading="lazy" src="https://image.tmdb.org/t/p/original${imageURL}" alt="backdrop-img" />
+                    </div>
+                `);
+            }
+        }else{
+            for(var i = 0; i < backdrops.length; i++){
+                    var imageURL = backdrops[i].file_path;
+            
+                    $("#backdrop-images").prepend(`
+                        <div class="poster">
+                            <img class="backdrop-img" loading="lazy" src="https://image.tmdb.org/t/p/original${imageURL}" alt="backdrop-img" />
+                        </div>
+                    `);
+            }
+        }
+
+        if(posters.length > 10){
+            for(var i = 0; i < 10; i++){
+                var imageURL = posters[i].file_path;
+                $("#poster-images").prepend(`
+                    <div class="poster">
+                        <img class="poster-img" loading="lazy" src="https://image.tmdb.org/t/p/original${imageURL}" alt="poster-img">
+                    </div>
+                `);
+            }
+        }else{
+            for(var i = 0; i < posters.length; i++){
+                var imageURL = posters[i].file_path;
+                $("#poster-images").prepend(`
+                    <div class="poster">
+                        <img class="poster-img" loading="lazy" src="https://image.tmdb.org/t/p/original${imageURL}" alt="poster-img">
+                    </div>
+                `);
+            }
+        }
+
+        
+        $("#showAllBackdrop").on("click", function(){
+            $("#showAllImages .modal-body").html("");
+            $("#showAllImages").modal("show");
+            $("#showAllImages .modal-body").addClass("backdrops");
+            $("#showAllImages .modal-body").removeClass("posters");
+            $(".modal-title").text(movieName + " Backdrops");
+            for(var i = 0; i < backdrops.length; i++){
+                var imageURL = backdrops[i].file_path;
+        
+                $("#showAllImages .modal-body").append(`
+                    <div class="poster mb-4">
+                        <img class="backdrop-img" loading="lazy" src="https://image.tmdb.org/t/p/original${imageURL}" alt="backdrop-img" />
+                    </div>
+                `);
+            }
+        });
+
+        $("#showAllPoster").on("click", function(){
+            $("#showAllImages .modal-body").html("");
+            $("#showAllImages").modal("show");
+            $("#showAllImages .modal-body").removeClass("backdrops");
+            $("#showAllImages .modal-body").addClass("posters");
+            $(".modal-title").text(movieName + " Posters");
+            for(var i = 0; i < posters.length; i++){
+                var imageURL = posters[i].file_path;
     
-            $("#backdrop-images").append(`
-                <div class="poster">
-                    <img class="backdrop-img" src="https://image.tmdb.org/t/p/original${imageURL}" alt="">
-                </div>
-            `);
-        }
-
-        for(var i = 0; i < posters.length; i++){
-            var imageURL = posters[i].file_path;
-
-            $("#poster-images").append(`
-                <div class="poster">
-                    <img class="poster-img" src="https://image.tmdb.org/t/p/original${imageURL}" alt="">
-                </div>
-            `);
-        }
-       
+                $("#showAllImages .modal-body").append(`
+                    <div class="poster mb-5">
+                        <img class="poster-img" loading="lazy" src="https://image.tmdb.org/t/p/original${imageURL}" alt="poster-img">
+                    </div>
+                `);
+            }
+        });
+    
     }
-
 }
+
+
+
+// showAllPoster
 
 var trailerKeys = [];
 async function getTrailer(){
@@ -228,6 +290,24 @@ async function getTrailer(){
         }
         
 }
+
+
+$(document).on('click', '.backdrop-img', function() { 
+    $(".backdrop-img").on("click", function(){
+        $(".modal-title").text(movieName);
+        var selectedImgSrc = $(this).attr("src"); 
+        $("#previewImageModal").modal('show');
+        $("#previewSrc").attr("src", selectedImgSrc)
+    })
+});
+$(document).on('click', '.poster-img', function() {
+    $(".poster-img").on("click", function(){
+        $(".modal-title").text(movieName);
+        var selectedImgSrc = $(this).attr("src"); 
+        $("#previewImageModal").modal('show');
+        $("#previewSrc").attr("src", selectedImgSrc)
+    })
+});
 
 $("#cast-tab").on("click", function(){
     $("#castOrCrew").text("Cast")
@@ -275,27 +355,3 @@ function getTime(minutes) {
     return h + 'h ' + m + 'm';
 }
 
-
-
-
-//  for(var i = 0; i < posters.length; i++){
-//     var imageURL = posters[i].file_path;
-
-//     $(".images-container").append(`
-//         <div class="poster">
-//             <img class="poster-img" src="https://image.tmdb.org/t/p/w185${imageURL}" alt="">
-//         </div>
-//     `);
-// }
-
-// if(posters.length === 0){
-    // for(var i = 0; i < backdrops.length; i++){
-    //     var imageURL = backdrops[i].file_path;
-
-    //     $(".images-container").append(`
-    //         <div class="poster">
-    //             <img class="backdrop-img" src="https://image.tmdb.org/t/p/w342${imageURL}" alt="">
-    //         </div>
-    // `);
-    // }
-// }
